@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Search Results</title>
+  <style>
+    .grid-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    .grid-item {
+      width: 400px; 
+      height: 400px;
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      background-color: #f7f7f7;
+      overflow: hidden;
+      transition: background-color 0.3s, transform 0.3s;
+      border-radius: 15px; /* Curved borders */
+    }
+
+    .grid-item:hover {
+      background-color: #ebebee;
+      transform: scale(1.05);
+    }
+
+    .grid-item h2 {
+      margin-top: 0;
+    }
+
+    .grid-item p {
+      margin-bottom: 5px;
+    }
+
+    .job-description {
+      max-height: 180px;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .job-description .highlight {
+      background-color: yellow;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    .button {
+      padding: 5px 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: background-color 0.3s, transform 0.3s, border-radius 0.3s;
+    }
+
+    .button:hover {
+      background-color: #8b8ef2;
+      border-radius: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="text-align: center;">Possible opportunities</h1>
+  <div class="grid-container" id="gridContainer">
+    {% for job in search_results %}
+      <div class="grid-item">
+        <h2>{{ job['jobtitle'] }}</h2>
+        <p><strong>Company Name:</strong> {{ job['company'] }}</p>
+        <p><strong>Experience:</strong> {{ job['experience'] }}</p>
+        <p><strong>Location:</strong> {{ job['joblocation_address'] }}</p>
+        <div class="job-description">
+          <p>{{ job['jobdescription'] }}</p>
+        </div>
+      
+          <div class="button-container">
+            <button type="button" class="button save" data-title="{{ job['jobtitle'] }}" data-company="{{ job['company'] }}">Save</button>
+            
+            <button type="submit" class="button" >Apply</button>
+            <button class="button view-company" data-company="{{ job['company'] }}">View</button>
+          </div>
+        
+      </div>
+    {% endfor %}
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const viewCompanyButtons = document.querySelectorAll('.view-company');
+      viewCompanyButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const companyName = this.getAttribute('data-company');
+          fetchCompanyUrl(companyName, this); // Pass the button reference to enable/disable
+        });
+      });
+  
+      function fetchCompanyUrl(companyName, button) {
+        button.disabled = true; // Disable the button while waiting for the response
+        fetch('/get_company_url', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ company_name: companyName })
+        })
+        .then(response => response.json())
+        .then(data => {
+          const companyUrl = data.company_url;
+          if (companyUrl) {
+            window.open(companyUrl, '_blank'); 
+          } else {
+            console.error('Error: Company URL not found.');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        })
+        .finally(() => {
+          button.disabled = false; 
+        });
+      }
+    });
+    
+  document.addEventListener('DOMContentLoaded', function() {
+    const applyButtons = document.querySelectorAll('.button.apply');
+    applyButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const jobDetails = this.closest('.grid-item');
+        const jobTitle = jobDetails.querySelector('h2').textContent;
+        const company = jobDetails.querySelector('p:nth-of-type(2)').textContent.split(':')[1].trim();
+        const experience = jobDetails.querySelector('p:nth-of-type(3)').textContent.split(':')[1].trim();
+        const jobLocation = jobDetails.querySelector('p:nth-of-type(4)').textContent.split(':')[1].trim();
+        const jobDescription = jobDetails.querySelector('.job-description p').textContent;
+
+        // Assuming you have a function to display a modal and populate it with the job details
+        displayApplyModal(jobTitle, company, experience, jobLocation, jobDescription);
+      });
+    });
+  });
+
+  function displayApplyModal(jobTitle, company, experience, jobLocation, jobDescription) {
+    // Here you can implement your modal logic to display the apply form with the job details
+    // You can populate the form fields with the job details passed as parameters
+    // For example, you can use a Bootstrap modal or any other modal library
+    // After populating the form, you can display the modal to the user
+    console.log('Displaying apply modal with job details:', jobTitle, company, experience, jobLocation, jobDescription);
+  }
+
+  
+  document.addEventListener('DOMContentLoaded', function() {
+  const saveButtons = document.querySelectorAll('.button.save');
+  saveButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const jobTitle = this.getAttribute('data-title');
+      const companyName = this.getAttribute('data-company');
+      saveJobDetails(jobTitle, companyName);
+    });
+  });
+});
+
+function saveJobDetails(jobTitle, companyName) {
+  fetch('/save_job_details', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      jobTitle: jobTitle,
+      companyName: companyName
+    })
+  })
+  .then(response => {
+    if (response.ok) {
+      alert('Job details saved successfully!');
+    } else {
+      alert('Failed to save job details.');
+    }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+}
+
+  </script>
+  
+</body>
+</html>

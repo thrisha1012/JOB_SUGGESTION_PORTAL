@@ -1,0 +1,278 @@
+.background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Ensure the image is behind other content */
+    opacity: 70%;
+}
+<img src="{{ url_for('static', filename='regbg.jpg') }}" class="background-image">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            
+        }
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Ensure the image is behind other content */
+            opacity: 70%;
+        }
+        .register-container {
+            width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color:rgba(225,255,255,0.7);
+            position:relative;
+            z-index:1;
+        }
+
+        header {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: left;
+            margin-bottom:10px;
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .input-field {
+            width: 100%;
+            height: 40px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            box-sizing: border-box;
+            font-size: 16px;
+            font-family: Poor Richard;
+            transition: border-color 0.3s;
+        }
+
+        .input-field:hover {
+            border-color: #007bff; /* Change border color on hover */
+        }
+
+        .input-box:hover .bx {
+            color: #007bff; /* Change icon color on hover */
+        }
+
+        .submit {
+            width: 30%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .submit:hover {
+            background-color: #0056b3;
+        }
+
+        label {
+            font-weight: bold;
+            font-family: Poor Richard;
+            display: block; /* Ensure labels are displayed on a new line */
+            margin-bottom: 5px;
+        }
+
+        select {
+            width: 100%;
+            height: 40px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        
+    </style>
+    <script>
+        function validateForm() {
+            var fullname = document.forms["registrationForm"]["fullname"].value;
+            var email = document.forms["registrationForm"]["email"].value;
+            var password = document.forms["registrationForm"]["password"].value;
+            var contact_number = document.forms["registrationForm"]["contact_number"].value;
+            var address = document.forms["registrationForm"]["address"].value;
+            var city = document.forms["registrationForm"]["city"].value;
+            var zipcode = document.forms["registrationForm"]["zipcode"].value;
+            var job_title = document.forms["registrationForm"]["job_title"].value;
+            var industry = document.forms["registrationForm"]["industry"].value;
+            var experience = document.forms["registrationForm"]["experience"].value;
+            var education = document.forms["registrationForm"]["education"].value;
+            var skills = document.forms["registrationForm"]["skills"].value;
+            var employment_type = document.forms["registrationForm"]["employment_type"].value;
+            var salary_range = document.forms["registrationForm"]["salary_range"].value;
+
+            if (fullname.trim() == "") {
+                alert("Full Name must be filled out");
+                return false;
+            }
+            if (email.trim() == "") {
+                alert("Email must be filled out");
+                return false;
+            }
+            if (password.trim() == "") {
+                alert("Password must be filled out");
+                return false;
+            }
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters long");
+                return false;
+            }
+            if (contact_number.trim() == "") {
+                alert("Contact Number must be filled out");
+                return false;
+            }
+            if (address.trim() == "") {
+                alert("Address must be filled out");
+                return false;
+            }
+            if (city.trim() == "") {
+                alert("City must be filled out");
+                return false;
+            }
+            if (zipcode.trim() == "") {
+                alert("Zip Code must be filled out");
+                return false;
+            }
+            if (job_title.trim() == "") {
+                alert("Job Title must be filled out");
+                return false;
+            }
+            if (industry.trim() == "") {
+                alert("Industry must be filled out");
+                return false;
+            }
+            if (experience.trim() == "") {
+                alert("Years of Experience must be filled out");
+                return false;
+            }
+            if (education.trim() == "") {
+                alert("Education must be filled out");
+                return false;
+            }
+            if (skills.trim() == "") {
+                alert("Skills must be filled out");
+                return false;
+            }
+            if (salary_range.trim() == "") {
+                alert("Salary Range must be filled out");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="image">
+        <img src="{{ url_for('static', filename='regbg.jpg') }}" class="background-image">
+    </div>
+        <div class="register-container">
+            <header >Create Your JobQuest Profile</header>
+            <h5>Search & apply to jobs from India's No.1 Job Site</h5>
+            <form action="{{ url_for('register') }}" method="post" enctype=multipart/form-data>
+                <div class="input-box">
+                    <label>Full Name</label>
+                    <input type="text" class="input-field" placeholder="Full Name" name="fullname" required>
+                    <i class="bx bx-user"></i>
+                </div>
+                <div class="input-box">
+                    <label>Email ID</label>
+                    <input type="email" class="input-field" placeholder="Email" name="email" required>
+                    <i class="bx bx-envelope"></i>
+                </div>
+                <div class="input-box">
+                    <label>Password</label>
+                    <input type="password" class="input-field" placeholder="Minimum 6 characters" name="password" required>
+                    <i class="bx bx-lock-alt"></i>
+                </div>
+                
+                <div class="input-box">
+                    <label>Mobile Number</label>
+                    <input type="text" class="input-field" placeholder="Contact Number" name="contact_number">
+                    <i class="bx bx-phone"></i>
+                </div>
+                <div class="input-box">
+                    <label>Address</label>
+                    <input type="text" class="input-field" placeholder="Address" name="address">
+                    <i class="bx bx-map"></i>
+                </div>
+                <div class="input-box">
+                    <label>City</label>
+                    <input type="text" class="input-field" placeholder="City" name="city">
+                    <i class="bx bx-city"></i>
+                </div>
+                <div class="input-box">
+                    <label>ZipCode</label>
+                    <input type="text" class="input-field" placeholder="Zip Code" name="zipcode">
+                    <i class="bx bx-map-pin"></i>
+                </div>
+               
+                <div class="input-box">
+                    <label>Job Title</label>
+                    <input type="text" class="input-field" placeholder="Job Title" name="job_title">
+                    <i class="bx bx-briefcase"></i>
+                </div>
+                <div class="input-box">
+                    <label>Industry</label>
+                    <input type="text" class="input-field" placeholder="Industry" name="industry">
+                    <i class="bx bx-industry"></i>
+                </div>
+                <div class="input-box">
+                    <label>Years Of Experience</label>
+                    <input type="text" class="input-field" placeholder="Years of Experience" name="experience">
+                    <i class="bx bx-time"></i>
+                </div>
+                <div class="input-box">
+                    <label>Education</label>
+                    <input type="text" class="input-field" placeholder="Education" name="education">
+                    <i class="bx bx-book"></i>
+                </div>
+                <div class="input-box">
+                    <label>Skills</label>
+                    <input type="text" class="input-field" placeholder="Skills" name="skills">
+                    <i class="bx bx-code"></i>
+                </div>
+                <div class="input-box">
+                    <label for="employment_type">Employment Type:</label>
+                    <select id="employment_type" name="employment_type">
+                        <option value="full-time">Full-Time</option>
+                        <option value="part-time">Part-Time</option>
+                        <option value="contract">Contract</option>
+                    </select>
+                </div>
+                <div class="input-box">
+                    <label>Salary</label>
+                    <input type="text" class="input-field" placeholder="Salary Range" name="salary_range">
+                    <i class="bx bx-dollar"></i>
+                </div>
+                <div class="input-box">
+                    <label for="resume">Upload Resume</label>
+                    <input type="file" class="input-field" id="resume" name="resume" accept=".pdf">
+                    <i class="bx bx-file"></i>
+                    <small>Accepted format: .pdf</small>
+                </div>
+                <button type="submit" class="submit">Register</button>
+            </form>
+            </div>
+        </div>
+</body>
+</html>

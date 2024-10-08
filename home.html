@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Search Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+
+    #banner-img {
+      width: 1478px;
+      height: 390px;
+      image-rendering: crisp-edges; /* Improve image clarity */
+      margin-top:20px;
+    }
+
+    header {
+  background-color: #03093cd5;
+  color: #fff;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header img {
+  height: 50px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+nav ul li {
+  margin-right: 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 25px;
+  font-family: "Brush Script MT", cursive;
+}
+
+.nav-right {
+  margin-left: 1000px; /* Pushes the "Login" and "Register" links to the right */
+}
+
+
+    main {
+      padding: 20px;
+      text-align: center; /* Align main content to the center */
+    }
+
+    .search-section {
+      margin-bottom: 20px;
+     
+      padding: 30px;
+      border-radius: 30px;
+      text-align: center; /* Align the search box to the center */
+    }
+
+    .search-section h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 34px;
+      font-family: "Brush Script MT";
+    }
+
+    .input-group {
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    .input-group label {
+      font-size: 18px;
+      margin-right: 10px;
+    }
+
+    .search-form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .search-form input[type="text"],
+    .search-form select,
+    .search-form button {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .search-form button {
+      background-color: #060967;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .search-form button:hover {
+      background-color: #100694;
+    }
+
+    .results-section {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    footer {
+      background-color: #041249;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      margin-top: 20px;
+      box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+    }
+
+    footer p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+  </style>
+</head>
+<body>
+    <header>
+        <nav>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+          <ul class="nav-right">
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Register</a></li>
+          </ul>
+        </nav>
+      </header>
+      
+  <img id="banner-img" src="bg.jpg" alt="Banner Image">
+
+  <main>
+    <section class="search-section">
+      
+      <form class="search-form" id="searchForm" action="/search">
+        <div class="input-group">
+            <label for="skillsSelect">Skills:</label>
+            <select id="skillsSelect">
+              <option value="">Select Skills/Domain/Roles</option>
+              <option value="IT Software">IT Software</option>
+              <option value="ITES">ITES</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Accounts">Accounts</option>
+              <option value="Sales">Sales</option>
+              <option value="Production">Production</option>
+              <option value="Executive Assistants">Executive Assistants</option>
+              <option value="Engineering Designs">Engineering Designs</option>
+              <option value="Financial Services">Financial Services</option>
+              <option value="Hotels">Hotels</option>
+              <option value="Architecture">Architecture</option>
+              <option value="HR">HR</option>
+              <option value="Teaching">Teaching</option>
+            </select>
+          </div>
+        <div class="input-group">
+          <label for="experienceSelect">Experience:</label>
+          <select id="experienceSelect">
+            <option value="">Select experience</option>
+            <option value="0-1">0-1 yrs</option>
+            <option value="1-3">1-3 yrs</option>
+            <option value="3-5">3-5 yrs</option>
+            <option value="5+">5+ yrs</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="locationInput">Location:</label>
+          <input type="text" id="locationInput" placeholder="Enter location">
+        </div>
+        <button type="submit" id="searchButton">Search</button>
+      </form>
+    </section>
+    <section class="results-section">
+      <h2>Search Results</h2>
+      <div id="searchResults"></div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2024 Job Search Portal. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById("searchForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      var skillsInput = document.getElementById("skillsInput").value;
+      var locationInput = document.getElementById("locationInput").value;
+      var experienceSelect = document.getElementById("experienceSelect").value;
+      var searchResults = document.getElementById("searchResults");
+      
+      // Here you can implement your search functionality
+      // For demo purposes, let's just display the search query
+      searchResults.innerHTML = "<p>Search Results for: Skills - " + skillsInput + ", Location - " + locationInput + ", Experience - " + experienceSelect + "</p>";
+    });
+  </script>
+</body>
+</html>

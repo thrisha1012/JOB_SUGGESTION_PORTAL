@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://d2w2i7rp1a0wob.cloudfront.net/static/css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    #banner-img {
+      width: 1550px;
+      height: 400px;
+      image-rendering: crisp-edges;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .grid-item {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: all 0.4s ease;
+    }
+
+    .grid-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .grid-item img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .caption {
+      margin-top: 10px;
+      font-family: "Book Antiqua";
+      font-size: 18px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 80px;
+      font-family: plush;
+    }
+
+    .navbar-nav {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .navbar-nav li {
+      margin-left: 50px;
+    }
+
+    @media (max-width: 768px) {
+      .navbar-nav {
+        margin-left: auto;
+      }
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0%);
+      }
+
+      50% {
+        transform: translateX(-50%);
+      }
+
+      90% {
+        transform: translateX(50%);
+      }
+
+      100% {
+        transform: translateX(0%);
+      }
+    }
+
+    .grid-container.scroll-animation {
+      animation: scroll 20s linear infinite;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="navbar navbar-expand-lg sub-navbar">
+      <div class="mobile-sub-navbar">
+
+        <p class="sub-navbar-title desktop-visibility">JOB QUEST</p>
+
+        <ul class="navbar-nav ml-auto"> <!-- Added ml-auto class -->
+          <li class="nav-item"><a href="{{ url_for('login') }}" class="nav-link">Login</a></li>
+          <li class="nav-item"><a href="{{ url_for('register') }}" class="nav-link">Register</a></li>
+        </ul>
+
+
+
+      </div>
+    </div>
+  </header>
+  <img src="{{url_for('static', filename='logo.jpg')}}" alt="BannerImage" id="banner-img">
+  <main>
+    <div class="container">
+    </div>
+    <h1>COOL PLACE TO WORK</h1>
+    <div class="grid-container scroll-animation" id="searchResults">
+      <!-- Your grid items here -->
+      <div class="grid-item">
+        <a href="https://www.zoho.com/">
+          <img src="{{ url_for('static', filename='img3.jpg') }}" alt="Image 3">
+        </a>
+
+      </div>
+      <div class="grid-item">
+        <a href="https://www.reliancedigital.in/">
+          <img src="{{ url_for('static', filename='img4.png') }}" alt="Image 4">
+        </a>
+
+      </div>
+      <div class="grid-item">
+        <a href="https://www.amazon.jobs/en/">
+          <img src="{{ url_for('static', filename='img5.png') }}" alt="Image 5">
+        </a>
+
+      </div>
+      <div class="grid-item">
+        <a href="https://www.guvi.in/jobs/">
+          <img src="{{ url_for('static', filename='img8.jpg') }}" alt="Image 6">
+        </a>
+
+      </div>
+
+
+
+    </div>
+    <section class="grid-container">
+      <!-- More content here -->
+    </section>
+
+    <div style="background-color: #000000; padding: 40px 0; color: #fff; overflow: hidden;">
+
+      <div class="footer-section" style="float: left; width: 16.666%; padding: 0 15px;">
+        <h3 style="font-size: 23px; border-bottom: 2px solid #fff; padding-bottom: 10px; color: #17e4e8;">Jobs by
+          Location</h3>
+        <ul style="list-style: none; padding-left: 0;">
+          <li><a href="#" style="color: #fcfcfc; font-size:18px; text-decoration: none;">Startup Jobs in India</a></li>
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">Startup Jobs in Bangalore</a>
+          </li>
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">Startup Jobs in Delhi</a></li>
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">Startup Jobs in Pune</a></li>
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">Startup Jobs in Hyderabad</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-section" style="float: left; width: 16.666%; padding: 0 15px;">
+        <h3 style="font-size: 23px; border-bottom: 2px solid #fff; padding-bottom: 10px; color: #17e4e8;">Technology
+          Jobs</h3>
+        <ul style="list-style: none; padding-left: 0;">
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">Android Developer Jobs</a></li>
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">iOS Development Jobs</a></li>
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">Frontend Developer Jobs</a></li>
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">Backend Developer Jobs</a></li>
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">DevOps Jobs</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section" style="float: left; width: 16.666%; padding: 0 15px;">
+        <h3 style="font-size: 23px; border-bottom: 2px solid #fff; padding-bottom: 10px; color: #17e4e8;">Business &
+          Design Jobs</h3>
+        <ul style="list-style: none; padding-left: 0;">
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">Marketing and Sales Jobs</a>
+          </li>
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">Digital Marketing Jobs</a></li>
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">UX and Graphic Design Jobs</a>
+          </li>
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">Product Manager Jobs</a></li>
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">Product Based Company Jobs</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-section" style="float: left; width: 16.666%; padding: 0 15px;">
+        <h3 style="font-size: 23px; border-bottom: 2px solid #fff; padding-bottom: 10px; color: #17e4e8;">Popular
+          Collections</h3>
+        <ul style="list-style: none; padding-left: 0;">
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">Video Editing Jobs</a></li>
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">Content Writing Jobs</a></li>
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">Funded Startups Jobs</a></li>
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">Data Science Jobs</a></li>
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">IoT Jobs</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section" style="float: left; width: 16.666%; padding: 0 15px;">
+        <h3 style="font-size: 23px; border-bottom: 2px solid #fff; padding-bottom: 10px; color: #17e4e8;">Top Companies
+          Hiring</h3>
+        <ul style="list-style: none; padding-left: 0;">
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">Meesho Jobs</a></li>
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">Paytm Jobs</a></li>
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">Vedantu Jobs</a></li>
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">MX Player Jobs</a></li>
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">Truemeds India Jobs</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section" style="float: left; width: 16.666%; padding: 0 15px;">
+        <h3 style="font-size: 23px; border-bottom: 2px solid #fff; padding-bottom: 10px; color: #17e4e8;">Top Companies
+          in India</h3>
+        <ul style="list-style: none; padding-left: 0;">
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">EdTech Companies</a></li>
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">B2B Companies</a></li>
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">B2C Companies</a></li>
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">Fintech Companies</a></li>
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">HR Companies</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section" style="float: left; width: 16.666%; padding: 0 15px;">
+        <h3 style="font-size: 23px; border-bottom: 2px solid #fff; padding-bottom: 10px; color: #17e4e8;">Browse Job
+          Categories</h3>
+        <ul style="list-style: none; padding-left: 0;">
+          <li><a href="#" style="color: #fcfcfc;font-size:18px; text-decoration: none;">Jobs by Category</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section" style="float: left; width: 16.666%; padding: 0 15px;">
+        <h3 style="font-size: 23px; border-bottom: 2px solid #fff; padding-bottom: 10px; color: #17e4e8;">Discover
+          Companies</h3>
+        <ul style="list-style: none; padding-left: 0;">
+          <li><a href="#" style="color: #fcfcfc;font-size:18px; text-decoration: none;">List of Companies</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section" style="float: left; width: 24%; padding: 0 15px;">
+        <h3 style="font-size: 23px; border-bottom: 2px solid #fff; padding-bottom: 10px; color: #17e4e8;">Browse Company
+          Categories</h3>
+        <ul style="list-style: none; padding-left: 0;">
+          <li><a href="#" style="color: #fcfcfc; font-size:18px;text-decoration: none;">Companies by Category</a></li>
+        </ul>
+      </div>
+      <div style="clear: both; padding-top: 20px; text-align: center; background-color: #000000;">
+        <div style="margin-bottom: 20px;">
+          <span style="color: #ffffff; font-size: 20px; margin-right: 20px;">Follow Us On:</span>
+          <a href="#" style="margin-right: 10px; color: #ffffff;">
+            <i class="fab fa-facebook-square fa-2x"></i>
+          </a>
+          <a href="#" style="margin-right: 10px; color: #ffffff;">
+            <i class="fab fa-twitter-square fa-2x"></i>
+          </a>
+          <a href="#" style="margin-right: 10px; color: #ffffff;">
+            <i class="fab fa-linkedin fa-2x"></i>
+          </a>
+          <a href="#" style="margin-right: 10px; color: #fffcfc;">
+            <i class="fab fa-instagram-square fa-2x"></i>
+          </a>
+        </div>
+      </div>
+      <div style="clear: both; padding:0.015px; text-align: center; background-color: #ffffff;">
+        <p style="color: #000000; font-size: 20px; font-weight: bold;">&copy; Job Quest 2024 . All rights reserved.</p>
+      </div>
+    </div>
+  </main>
+  <script>// Function to redirect to the login page after 15 seconds
+    setTimeout(function () {
+      window.location.href = "{{ url_for('login') }}";
+    }, 5000); // 15 seconds in milliseconds</script>
+  <script src="script.js">
+
+  </script>
+</body>
+
+</html>

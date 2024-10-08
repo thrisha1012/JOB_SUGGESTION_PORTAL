@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modify Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .register-container {
+            width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            width: 100%;
+            height: 40px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            box-sizing: border-box;
+            font-size: 16px;
+            font-family: Poor Richard;
+        }
+
+        .input-box i {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 10px;
+            color: #888;
+        }
+
+        .submit {
+            width: 30%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .submit:hover {
+            background-color: #0056b3;
+        }
+
+        label {
+            font-weight: bold;
+            font-family: Poor Richard;
+        }
+
+        select {
+            width: 100%;
+            height: 40px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="register-container">
+        <header>Modify Your JobQuest Profile</header>
+        <form action="{{ url_for('modify_profile') }}" method="post" enctype="multipart/form-data">
+            <div class="input-box">
+                <label>Full Name</label>
+                <input type="text" class="input-field" name="fullname"  required>
+                <i class="bx bx-user"></i>
+            </div>
+            <div class="input-box">
+                <label>Email ID</label>
+                <input type="email" class="input-field" name="email"  required>
+                <i class="bx bx-envelope"></i>
+            </div>
+            <div class="input-box">
+                <label>Password</label>
+                <input type="password" class="input-field" name="password" placeholder="Enter new password">
+                <i class="bx bx-lock-alt"></i>
+            </div>
+
+            <div class="input-box">
+                <label>Mobile Number</label>
+                <input type="text" class="input-field" placeholder="Contact Number" name="contact_number">
+                <i class="bx bx-phone"></i>
+            </div>
+            <div class="input-box">
+                <label>Address</label>
+                <input type="text" class="input-field" placeholder="Address" name="address">
+                <i class="bx bx-map"></i>
+            </div>
+            <div class="input-box">
+                <label>City</label>
+                <input type="text" class="input-field" placeholder="City" name="city">
+                <i class="bx bx-city"></i>
+            </div>
+            <div class="input-box">
+                <label>ZipCode</label>
+                <input type="text" class="input-field" placeholder="Zip Code" name="zipcode">
+                <i class="bx bx-map-pin"></i>
+            </div>
+
+            <div class="input-box">
+                <label>Job Title</label>
+                <input type="text" class="input-field" placeholder="Job Title" name="job_title">
+                <i class="bx bx-briefcase"></i>
+            </div>
+            <div class="input-box">
+                <label>Industry</label>
+                <input type="text" class="input-field" placeholder="Industry" name="industry">
+                <i class="bx bx-industry"></i>
+            </div>
+            <div class="input-box">
+                <label>Years Of Experience</label>
+                <input type="text" class="input-field" placeholder="Years of Experience" name="experience">
+                <i class="bx bx-time"></i>
+            </div>
+            <div class="input-box">
+                <label>Education</label>
+                <input type="text" class="input-field" placeholder="Education" name="education">
+                <i class="bx bx-book"></i>
+            </div>
+            <div class="input-box">
+                <label>Skills</label>
+                <input type="text" class="input-field" placeholder="Skills" name="skills">
+                <i class="bx bx-code"></i>
+            </div>
+            <div class="input-box">
+                <label for="employment_type">Employment Type:</label>
+                <select id="employment_type" name="employment_type">
+                    <option value="full-time">Full-Time</option>
+                    <option value="part-time">Part-Time</option>
+                    <option value="contract">Contract</option>
+                </select>
+            </div>
+            <div class="input-box">
+                <label>Salary</label>
+                <input type="text" class="input-field" placeholder="Salary Range" name="salary_range">
+                <i class="bx bx-dollar"></i>
+            </div>
+            <div class="input-box">
+                <label>Upload Resume</label>
+                <input type="file" class="input-field" name="resume">
+                <i class="bx bx-file"></i>
+            </div>
+            <button type="submit" class="submit">Modify</button>
+        </form>
+    </div>
+</body>
+
+</html>
+

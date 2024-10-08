@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for a Job</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha384-c6A4AA6HH7G7GT3dyzzUzqf+iWcViX3jzcIR+UO6hsL0piW2w5Kx22T1qrg/nG5f" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #060967;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #060967;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        button[type="submit"] {
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            background-color: #060967;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #100694;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Apply for a Job</h2>
+        <form  method="POST">
+            <label for="job_title">Job Title</label>
+            <input type="text" id="job_title" name="job_title" required>
+
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" required>
+
+            <label for="experience">Experience</label>
+            <input type="text" id="experience" name="experience" required>
+
+            <label for="joblocation_address">Job Location</label>
+            <input type="text" id="joblocation_address" name="joblocation_address" required>
+
+            <label for="jobdescription">Job Description</label>
+            <textarea id="jobdescription" name="jobdescription" required></textarea>
+
+            <button type="submit">Submit Application</button>
+        </form>
+    </div>
+</body>
+</html>
